@@ -26,7 +26,7 @@ class USER
         {
             $new_password = password_hash($upass, PASSWORD_DEFAULT);
 
-            $stmt = $this->conn->prepare("INSERT INTO user(id,email,password) 
+            $stmt = $this->conn->prepare("INSERT INTO admin(id,email,password) 
 		                                               VALUES(:id, :mail, :pass)");
 
             $stmt->bindparam(":id", $uid);

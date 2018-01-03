@@ -9,9 +9,9 @@
 class Database
 {
     private $host = "localhost";
-    private $db_name = "qccdb";
+    private $db_name = "tku_package";
     private $username = "root";
-    private $password = "9901";
+    private $password = "root";
     public $conn;
 
     public function dbConnection()

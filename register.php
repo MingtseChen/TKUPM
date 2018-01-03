@@ -33,13 +33,13 @@ if(isset($_POST['btn-signup']))
     {
         try
         {
-            $stmt = $user->runQuery("SELECT id, email FROM user WHERE id=:uid OR email=:mail");
+            $stmt = $user->runQuery("SELECT uid, email FROM admin WHERE uid=:uid OR email=:mail");
             $stmt->execute(array(':uid'=>$uid, ':mail'=>$umail));
             print ($uid);
             print ($umail);
             $row=$stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($row['id']==$uid) {
+            if($row['uid']==$uid) {
                 $error[] = "sorry id already taken !";
             }
             else if($row['email']==$umail) {
@@ -129,7 +129,7 @@ if(isset($_POST['btn-signup']))
                         </div>
                     </div>
                 </div>
-                <button type="submit" name="btn-signup">Register</button>
+                <button type="submit" name="btn-signup" class="btn btn-primary">Register</button>
             </form>
             <div class="text-center">
                 <a class="d-block small mt-3" href="login.php">Login Page</a>
