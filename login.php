@@ -8,13 +8,18 @@ if($login->is_loggedin()!="")
     $login->redirect('index.php');
 }
 
+if(isset($_GET['denied'])){
+  if($_GET['denied'] == true){
+    $error = "Access Denied";
+  }
+}
+
 if(isset($_POST['btn-login']))
 {
     $uid = strip_tags($_POST['uid']);
-    $umail = strip_tags($_POST['umail']);
     $upass = strip_tags($_POST['upw']);
 
-    if($login->doLogin($uid,$umail,$upass))
+    if($login->doLogin($uid,$upass))
     {
         $login->redirect('index.php');
     }
@@ -59,12 +64,12 @@ if(isset($_POST['btn-login']))
         <form role="form" method="post">
           <div class="form-group">
             <label>Student ID</label>
-            <input class="form-control" id="InputId" type="text" aria-describedby="IDHelp" placeholder="Enter Studen Id" name="uid">
+            <input class="form-control" id="InputId" type="text" aria-describedby="IDHelp" placeholder="Enter Studen ID" name="uid">
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
                 <label>Email</label>
                 <input class="form-control" id="InputEmail1" type="text" aria-describedby="emailHelp" placeholder="Email" name="umail">
-          </div>
+          </div> -->
           <div class="form-group">
             <label>Password</label>
             <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" name="upw">

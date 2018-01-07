@@ -20,18 +20,19 @@ class USER
         return $stmt;
     }
 
-    public function register($uid,$umail,$upass)
+    public function register($uid,$umail,$upass,$level)
     {
         try
         {
             $new_password = password_hash($upass, PASSWORD_DEFAULT);
 
-            $stmt = $this->conn->prepare("INSERT INTO admin(id,email,password) 
-		                                               VALUES(:id, :mail, :pass)");
+            $stmt = $this->conn->prepare("INSERT INTO admin(uid,email,password,level) 
+		                                               VALUES(:id, :mail, :pass, :level)");
 
             $stmt->bindparam(":id", $uid);
             $stmt->bindparam(":mail", $umail);
             $stmt->bindparam(":pass", $new_password);
+            $stmt->bindparam(":level", $level);
 
             $stmt->execute();
 
@@ -44,19 +45,20 @@ class USER
     }
 
 
-    public function doLogin($uid,$umail,$upass)
+    public function doLogin($uid,$upass)
     {
         try
         {
-            $stmt = $this->conn->prepare("SELECT id, name, email, password FROM user WHERE id=:uid OR email=:mail ");
-            $stmt->execute(array(':uid'=>$uid, ':mail'=>$umail));
+            $stmt = $this->conn->prepare("SELECT uid, password, level FROM admin WHERE uid=:uid");
+            $stmt->execute(array(':uid'=>$uid));
             $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
             if($stmt->rowCount() == 1)
             {
                 if(password_verify($upass, $userRow['password']))
                 {
-                    print ($userRow['id']);
-                    $_SESSION['user_session'] = $userRow['id'];
+                    print ($userRow['uid']);
+                    $_SESSION['user_session'] = $userRow['uid'];
+                    $_SESSION['level'] = $userRow['level'];
                     print ($_SESSION['user_session']);
                     return true;
                 }

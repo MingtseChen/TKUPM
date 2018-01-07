@@ -3,9 +3,13 @@ session_start();
 require_once('User.php');
 $user = new USER();
 
-if($user->is_loggedin()!="")
+// if($user->is_loggedin()!="")
+// {
+//     $user->redirect('login.php');
+// }
+if($_SESSION['level'] != 1)
 {
-    $user->redirect('home.php');
+    $user->redirect('login.php?denied=true');
 }
 
 if(isset($_POST['btn-signup']))
@@ -13,6 +17,7 @@ if(isset($_POST['btn-signup']))
     $uid = strip_tags($_POST['uid']);
     $umail = strip_tags($_POST['umail']);
     $upw = strip_tags($_POST['pw']);
+    $level = strip_tags($_POST['level']);
 
     if($uid=="")	{
         $error[] = "provide username !";
@@ -47,7 +52,7 @@ if(isset($_POST['btn-signup']))
             }
             else
             {
-                if($user->register($uid,$umail,$upw)){
+                if($user->register($uid,$umail,$upw,$level)){
                     $user->redirect('register.php?joined');
                 }
             }
@@ -108,8 +113,15 @@ if(isset($_POST['btn-signup']))
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
-                            <label for="exampleInputName">Student ID</label>
+                            <label for="exampleInputName">ID</label>
                             <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter Student ID" name="uid">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputName">User Level</label>
+                            <select class="form-control" id="exampleInputName" name="level">
+                                <option value="1">Admin</option>
+                                <option value="0">Student</option>
+                            </select>
                         </div>
                     </div>
                 </div>

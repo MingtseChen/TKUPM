@@ -1,16 +1,16 @@
-><?php
+<?php
 
 require_once("session.php");
 
 require_once("User.php");
-$auth_user = new USER();
+// $auth_user = new USER();
 
-$user_id = $_SESSION['user_session'];
+// $user_id = $_SESSION['user_session'];
 
-$stmt = $auth_user->runQuery("SELECT * FROM user WHERE id=$user_id");
-$stmt->execute();
+// $stmt = $auth_user->runQuery("SELECT * FROM user WHERE id=$user_id");
+// $stmt->execute();
 
-$userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+// $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -35,48 +35,12 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php">Postal System</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="index.php">
-                    <i class="fa fa-fw fa-dashboard"></i>
-                    <span class="nav-link-text">包裹管理</span>
-                </a>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" href="manage.php">
-                    <i class="fa fa-fw fa-area-chart"></i>
-                    <span class="nav-link-text">學生管理</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav sidenav-toggler">
-            <li class="nav-item">
-                <a class="nav-link text-center" id="sidenavToggler">
-                    <i class="fa fa-fw fa-angle-left"></i>
-                </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<?php include_once('admin_header.php');?>
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i>新增包裹
+                <i class="fa fa-plus" aria-hidden="true"></i>新增包裹
             </div>
             <div class="card-body">
                 <form>
@@ -126,7 +90,7 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i>包裹列表
+                <i class="fa fa-list" aria-hidden="true"></i>包裹列表
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -187,7 +151,8 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © TKUMP 2017</small>
+                <small>Copyright © CHENMT 2017</small>
+                <small>Proudly Presented by TKU IIT</small>
             </div>
         </div>
     </footer>
