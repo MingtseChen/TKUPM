@@ -7,6 +7,15 @@ $auth_user = new USER();
 if ($_SESSION['level'] == 3) {
     $auth_user->redirect('student.php');
 }
+
+if (isset($_POST['add_pkg']) && $_SESSION['level'] == 1) {
+    $rcp = strip_tags($_POST['rcp']);
+    $cat = strip_tags($_POST['cat']);
+    $strg = strip_tags($_POST['strg']);
+    $pid = strip_tags($_POST['pid']);
+    $arr_time = strip_tags($_POST['arr_time']);
+    $auth_user->addPackage($rcp, $cat, $strg, $pid, $arr_time);
+}
 //if ($_SESSION['level'] != 1 || $_SESSION['level'] != 2 ) {
 //    $auth_user->redirect('index.php');
 //}
@@ -37,6 +46,7 @@ if ($_SESSION['level'] == 3) {
     <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/tempusdominus-bootstrap-4.min.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -92,11 +102,17 @@ if ($_SESSION['level'] == 3) {
                         <!--                        </div>-->
                         <div class="col-md-3 mb-3">
                             <label for="validationDefault05">抵達時間</label>
-                            <input type="text" class="form-control" id="validationDefault05" placeholder="抵達時間"
-                                   required name="arr_time">
+                            <input type="text" class="form-control datetimepicker-input" id="dtp"
+                                   placeholder="抵達時間"
+                                   required name="arr_time" data-toggle="datetimepicker" data-target="#dtp">
                             <div class="invalid-feedback">
                                 Invalid
                             </div>
+                            <script type="text/javascript">
+                                jQuery(function ($) { // DOM is now ready and jQuery's $ alias sandboxed
+                                    $(".comment_switch")('#dtp').datetimepicker()
+                                });
+                            </script>
                         </div>
                     </div>
 

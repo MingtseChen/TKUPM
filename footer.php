@@ -23,5 +23,7 @@
 <script src="js/sb-admin.min.js"></script>
 <!-- Custom scripts for this page-->
 <script src="js/sb-admin-datatables.min.js"></script>
+<script type="text/javascript" src="/js/moment.js"></script>
+<script type="text/javascript" src="/js/tempusdominus-bootstrap-4.min.js"></script>
 <!--    <script src="js/sb-admin-charts.min.js"></script>-->
 <?php echo $debugbarRenderer->render() ?>
