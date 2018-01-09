@@ -49,19 +49,28 @@ if ($_SESSION['level'] == 3) {
                 <i class="fa fa-plus" aria-hidden="true"></i>新增包裹
             </div>
             <div class="card-body">
-                <form>
+                <form method="POST">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="validationDefault01">收件人</label>
-                            <input type="text" class="form-control" id="validationDefault01" placeholder="收件人" required>
+                            <input type="text" class="form-control" id="validationDefault01" placeholder="收件人" required
+                                   name="rcp">
                             <div class="invalid-feedback">
                                 Invalid
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="validationDefault02">包裹類型</label>
                             <input type="text" class="form-control" id="validationDefault02" placeholder="包裹類型"
-                                   required>
+                                   required name="cat">
+                            <div class="invalid-feedback">
+                                Invalid
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationDefault04">存放位置</label>
+                            <input type="text" class="form-control" id="validationDefault04" placeholder="存放位置"
+                                   required name="strg">
                             <div class="invalid-feedback">
                                 Invalid
                             </div>
@@ -70,27 +79,28 @@ if ($_SESSION['level'] == 3) {
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="validationDefault03">包裹編號</label>
-                            <input type="text" class="form-control" id="validationDefault03" placeholder="包裹編號">
+                            <input type="text" class="form-control" id="validationDefault03" placeholder="包裹編號"
+                                   name="pid">
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="validationDefault04">數量</label>
-                            <input type="text" class="form-control" id="validationDefault04" placeholder="數量"
-                                   required>
-                            <div class="invalid-feedback">
-                                Invalid
-                            </div>
-                        </div>
+                        <!--                        <div class="col-md-3 mb-3">-->
+                        <!--                            <label for="validationDefault04">數量</label>-->
+                        <!--                            <input type="text" class="form-control" id="validationDefault04" placeholder="數量"-->
+                        <!--                                   required>-->
+                        <!--                            <div class="invalid-feedback">-->
+                        <!--                                Invalid-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
                         <div class="col-md-3 mb-3">
                             <label for="validationDefault05">抵達時間</label>
                             <input type="text" class="form-control" id="validationDefault05" placeholder="抵達時間"
-                                   required>
+                                   required name="arr_time">
                             <div class="invalid-feedback">
                                 Invalid
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn btn-success btn-sm" type="submit">送出</button>
+                    <button class="btn btn-success btn-sm" type="submit" name="add_pkg">送出</button>
                 </form>
             </div>
         </div>
@@ -130,22 +140,6 @@ if ($_SESSION['level'] == 3) {
                                 <input class="btn btn-danger btn-sm" type="button" value="刪除">
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Test User2</td>
-                            <td>成績單</td>
-                            <td>2231527#214-1227</td>
-                            <td>1</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>2017/12/01</td>
-                            <td>
-                                <input class="btn btn-info btn-sm" type="button" value="編輯">
-                                <input class="btn btn-success btn-sm" type="button" value="簽收">
-                                <input class="btn btn-danger btn-sm" type="button" value="刪除">
-                            </td>
-                        </tr>
-
                         </tbody>
                     </table>
                 </div>

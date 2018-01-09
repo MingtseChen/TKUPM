@@ -49,6 +49,28 @@ class USER
         }
     }
 
+    public function addPackage($rpt, $ptype, $storage, $pid, $timestamp_arrive)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "INSERT INTO package_info(recipients,ptype,storage,pid ,timestamp_arrive) 
+		                                               VALUES(:rpt, :ptype, :storage, :pid, :timestamp_arrive)"
+            );
+
+            $stmt->bindparam(":rpt", $rpt);
+            $stmt->bindparam(":ptype", $ptype);
+            $stmt->bindparam(":storage", $storage);
+            $stmt->bindparam(":pid", $pid);
+            $stmt->bindparam(":timestamp_arrive", $timestamp_arrive);
+
+            $stmt->execute();
+
+            return $stmt;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 
     public function doLogin($uid, $upass)
     {

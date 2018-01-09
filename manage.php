@@ -5,12 +5,10 @@ require_once("session.php");
 require_once("User.php");
 $auth_user = new USER();
 
-// $user_id = $_SESSION['user_session'];
-
 $stmt = $auth_user->runQuery("SELECT `uid`,`email`,`level` FROM `admin`");
-$stmt->execute();
+$users = $stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-$users = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //var_dump($userRow);
 if ($_SESSION['level'] == 3) {
@@ -20,6 +18,7 @@ if ($_SESSION['level'] != 1) {
     $auth_user->redirect('index.php');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,22 +65,26 @@ if ($_SESSION['level'] != 1) {
                         </tr>
                         </thead>
                         <tbody>
-                        <!--                        --><?php
-                        //                        foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k => $v) {
-                        //                            ?>
-                        <!--                            <tr>-->
-                        <!--                                <td>1</td>-->
-                        <!--                                <td>--><?php //echo $user['uid'] ?><!--</td>-->
-                        <!--                                <td>--><?php //echo $user['email'] ?><!--</td>-->
-                        <!--                                <td>N/A</td>-->
-                        <!--                                <td>N/A</td>-->
-                        <!--                                <td>--><?php //echo $user['level'] ?><!--</td>-->
-                        <!--                                <td>-->
-                        <!--                                    <input class="btn btn-info btn-sm" type="button" value="編輯">-->
-                        <!--                                    <input class="btn btn-danger btn-sm" type="button" value="撤銷">-->
-                        <!--                                </td>-->
-                        <!--                            </tr>-->
-                        <!--                        --><?php //} ?>
+                        <?php
+                        $i = 1;
+                        foreach ($stmt->fetchAll() as $item) { ?>
+                            <tr>
+                                <td><?php echo "$i"; $i++; ?></td>
+                                <td><?php echo $item['uid']; ?></td>
+                                <td><?php echo $item['email']; ?></td>
+                                <td>N/A</td>
+                                <td>N/A</td>
+                                <td><?php if ($item['level'] == 1) {
+                                        echo 'Admin';
+                                    } else {
+                                        echo 'Student';
+                                    } ?></td>
+                                <td>
+                                    <input class="btn btn-info btn-sm" type="button" value="編輯">
+                                        <input class="btn btn-danger btn-sm" type="button" value="撤銷">
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
