@@ -17,37 +17,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHP" type="php">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bootstrap/css" />
-          <root url="file://$MODULE_DIR$/vendor/bootstrap/js" />
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/css" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/fonts" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/less" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/scss" />
-          <root url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
-          <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bootstrap/css" />
-          <root url="file://$MODULE_DIR$/vendor/bootstrap/js" />
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/css" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/fonts" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/less" />
-          <root url="file://$MODULE_DIR$/vendor/font-awesome/scss" />
-          <root url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
-          <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-php72" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>
