@@ -1,10 +1,21 @@
 <?php
+require_once("debug.php");
 require_once("session.php");
+require_once("User.php");
+$auth_user = new USER();
+
+$stmt = $auth_user->runQuery("SELECT * FROM `package_info` WHERE recipients=:recipients");
+$stmt->execute(array(':recipients' => $_SESSION['username']));
+$users = $stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
+    <?php echo $debugbarRenderer->renderHead() ?>
     <title>學生郵務系統</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -33,52 +44,63 @@ require_once("session.php");
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php?logout=true">
-                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false"><?php echo 'Hi, '.$_SESSION['username'] ?></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="logout.php?logout=true">Logout</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<!-- <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-3">Code Name TKUPM</h1>
-        <p class="lead">Modern Package Manager for TKU Students !</p>
-    </div>
-</div> -->
 <div class="container">
     <br>
+
     <div class="card">
         <div class="card-header">
-            Package Notify !
+            Package Arrived !
         </div>
         <div class="card-body">
-            <h5 class="card-title">You've got a new package !</h5>
+            <!--            <h5 class="card-title">You've got a new package !</h5>-->
             <p class="card-text">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
+                    <th>#</th>
                     <th>收件人</th>
                     <th>包裹類型</th>
+                    <th>存放位置</th>
                     <th>包裹編號</th>
-                    <th>數量</th>
                     <th>抵達時間</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Test User</td>
-                    <td>明信片</td>
-                    <td>1004523#s21e4-1s2r27</td>
-                    <td>2</td>
-                    <td>2018/01/01</td>
-                </tr>
+                <?php
+                $i = 1;
+                foreach ($stmt->fetchAll() as $item) { ?>
+                    <tr>
+                        <td><?php echo "$i";
+                            $i++; ?>
+                        </td>
+                        <td><?php echo $item['recipients']; ?></td>
+                        <td><?php echo $item['ptype']; ?></td>
+                        <td><?php echo $item['storage']; ?></td>
+                        <td><?php echo $item['pid']; ?></td>
+                        <td style="display: none"><?php echo $item['is_pick'] == 0 ? 'N' : 'Y' ?></td>
+                        <td><?php echo $item['timestamp_arrive']; ?></td>
+                    </tr>
+                <?php } ?>
                 </tbody>
             </table>
             </p>
             <a href="#" class="btn btn-success float-right" data-toggle="modal" data-target="#confirm">Sign it</a>
         </div>
     </div>
+
 </div>
 <!-- Modal -->
 <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -100,11 +122,20 @@ require_once("session.php");
         </div>
     </div>
 </div>
+<footer class="sticky-footer">
+    <div class="container">
+        <div class="text-center">
+            <small>Copyright © CHENMT 2017-2018</small>
+            <small>Proudly Presented by TKU IIT</small>
+        </div>
+    </div>
+</footer>
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<?php echo $debugbarRenderer->render() ?>
 </body>
 
 </html>

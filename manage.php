@@ -69,7 +69,8 @@ if ($_SESSION['level'] != 1) {
                         $i = 1;
                         foreach ($stmt->fetchAll() as $item) { ?>
                             <tr>
-                                <td><?php echo "$i"; $i++; ?></td>
+                                <td><?php echo "$i";
+                                    $i++; ?></td>
                                 <td><?php echo $item['uid']; ?></td>
                                 <td><?php echo $item['email']; ?></td>
                                 <td>N/A</td>
@@ -81,7 +82,7 @@ if ($_SESSION['level'] != 1) {
                                     } ?></td>
                                 <td>
                                     <input class="btn btn-info btn-sm" type="button" value="編輯">
-                                        <input class="btn btn-danger btn-sm" type="button" value="撤銷">
+                                    <input class="btn btn-danger btn-sm" type="button" value="撤銷">
                                 </td>
                             </tr>
                         <?php } ?>

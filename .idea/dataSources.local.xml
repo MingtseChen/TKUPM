@@ -2,13 +2,22 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="tku_package@localhost" uuid="fb38276a-c8d4-4f94-9153-5a044446a687">
-      <database-info product="MySQL" version="5.5.5-10.2.11-MariaDB-10.2.11+maria~zesty" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.44 ( Revision: b3cda4f864902ffdde495b9df93937c3e20009be )">
+      <database-info product="MySQL" version="5.5.5-10.2.12-MariaDB-10.2.12+maria~artful" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.44 ( Revision: b3cda4f864902ffdde495b9df93937c3e20009be )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <user-name>root</user-name>
       <introspection-schemas>*:tku_package</introspection-schemas>
+    </data-source>
+    <data-source name="tku" uuid="b18bf1d3-2eaa-44cc-a0ca-bcbb2c00683a">
+      <database-info product="MySQL" version="5.0.51b-community-nt" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.44 ( Revision: b3cda4f864902ffdde495b9df93937c3e20009be )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <user-name>chenmt</user-name>
+      <introspection-schemas>*:xoops</introspection-schemas>
     </data-source>
   </component>
 </project>

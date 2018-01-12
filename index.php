@@ -4,11 +4,11 @@ require_once("session.php");
 require_once("debug.php");
 require_once("User.php");
 $auth_user = new USER();
-if ($_SESSION['level'] == 3) {
+if (isset($_SESSION['level']) && $_SESSION['level'] == 3) {
     $auth_user->redirect('student.php');
 }
 
-if (isset($_POST['add_pkg']) && $_SESSION['level'] == 1) {
+if (isset($_POST['add_pkg']) && isset($_SESSION['level']) && $_SESSION['level'] == 1) {
     $rcp = strip_tags($_POST['rcp']);
     $cat = strip_tags($_POST['cat']);
     $strg = strip_tags($_POST['strg']);
@@ -16,6 +16,10 @@ if (isset($_POST['add_pkg']) && $_SESSION['level'] == 1) {
     $arr_time = strip_tags($_POST['arr_time']);
     $auth_user->addPackage($rcp, $cat, $strg, $pid, $arr_time);
 }
+
+$stmt = $auth_user->runQuery("SELECT * FROM `package_info`");
+$users = $stmt->execute();
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 //if ($_SESSION['level'] != 1 || $_SESSION['level'] != 2 ) {
 //    $auth_user->redirect('index.php');
 //}
@@ -102,17 +106,20 @@ if (isset($_POST['add_pkg']) && $_SESSION['level'] == 1) {
                         <!--                        </div>-->
                         <div class="col-md-3 mb-3">
                             <label for="validationDefault05">抵達時間</label>
-                            <input type="text" class="form-control datetimepicker-input" id="dtp"
+                            <!--                            <input type="text" class="form-control datetimepicker-input" id="dtp"-->
+                            <!--                                   placeholder="抵達時間"-->
+                            <!--                                   required name="arr_time" data-toggle="datetimepicker" data-target="#dtp">-->
+                            <input type="text" class="form-control " id="dtp"
                                    placeholder="抵達時間"
-                                   required name="arr_time" data-toggle="datetimepicker" data-target="#dtp">
+                                   required name="arr_time" data-toggle="" data-target="#dtp">
                             <div class="invalid-feedback">
                                 Invalid
                             </div>
-                            <script type="text/javascript">
-                                jQuery(function ($) { // DOM is now ready and jQuery's $ alias sandboxed
-                                    $(".comment_switch")('#dtp').datetimepicker()
-                                });
-                            </script>
+                            <!--                            <script type="text/javascript">-->
+                            <!--                                jQuery(function ($) { // DOM is now ready and jQuery's $ alias sandboxed-->
+                            <!--                                    $(".comment_switch")('#dtp').datetimepicker()-->
+                            <!--                                });-->
+                            <!--                            </script>-->
                         </div>
                     </div>
 
@@ -132,30 +139,37 @@ if (isset($_POST['add_pkg']) && $_SESSION['level'] == 1) {
                             <th>#</th>
                             <th>收件人</th>
                             <th>包裹類型</th>
+                            <th>存放位置</th>
                             <th>包裹編號</th>
-                            <th>數量</th>
                             <th>已領取</th>
                             <th>已通知</th>
                             <th>抵達時間</th>
+                            <th>領取時間</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Test User</td>
-                            <td>明信片</td>
-                            <td>1004523#214-1227</td>
-                            <td>2</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>2018/01/01</td>
-                            <td>
-                                <input class="btn btn-info btn-sm" type="button" value="編輯">
-                                <input class="btn btn-success btn-sm" type="button" value="簽收">
-                                <input class="btn btn-danger btn-sm" type="button" value="刪除">
-                            </td>
-                        </tr>
+                        <?php
+                        $i = 1;
+                        foreach ($stmt->fetchAll() as $item) { ?>
+                            <tr>
+                                <td><?php echo "$i";
+                                    $i++; ?></td>
+                                <td><?php echo $item['recipients']; ?></td>
+                                <td><?php echo $item['ptype']; ?></td>
+                                <td><?php echo $item['storage']; ?></td>
+                                <td><?php echo $item['pid']; ?></td>
+                                <td><?php echo $item['is_pick'] == 0 ? 'N' : 'Y' ?></td>
+                                <td><?php echo $item['is_notify'] == 0 ? 'N' : 'Y' ?></td>
+                                <td><?php echo $item['timestamp_arrive']; ?></td>
+                                <td><?php echo $item['timestamp_pickup']; ?></td>
+                                <td>
+                                    <input class="btn btn-info btn-sm" type="button" value="編輯">
+                                    <input class="btn btn-success btn-sm" type="button" value="簽收">
+                                    <input class="btn btn-danger btn-sm" type="button" value="刪除">
+                                </td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>

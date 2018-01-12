@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: h4090
- * Date: 2017/12/26
- * Time: 下午 05:00
- */
 
 class Database
 {
@@ -22,6 +16,7 @@ class Database
         {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn -> exec("set names utf8");
         }catch(PDOException $exception)
         {
             echo "Connection error: " . $exception->getMessage();
@@ -46,6 +41,7 @@ class UserDB
         {
             $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn -> exec("set names utf8");
         }catch(PDOException $exception)
         {
             echo "Connection error: " . $exception->getMessage();

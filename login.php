@@ -19,11 +19,22 @@ if (isset($_GET['denied'])) {
     }
 }
 
-if (isset($_POST['btn-login'])) {
+if (isset($_POST['admin-login'])) {
+    $uid = strip_tags($_POST['uid']);
+    $upass = strip_tags($_POST['upw']);
+    $debugbar["messages"]->addMessage("adm login!");
+    if ($login->doLogin($uid, $upass, 'admin')) {
+        $login->redirect('index.php');
+    } else {
+        $error = "Wrong Details !";
+    }
+}
+if (isset($_POST['usr-login'])) {
+    $debugbar["messages"]->addMessage("usr login!");
     $uid = strip_tags($_POST['uid']);
     $upass = strip_tags($_POST['upw']);
 
-    if ($login->doLogin($uid, $upass)) {
+    if ($login->doLogin($uid, $upass, 'usr')) {
         $login->redirect('index.php');
     } else {
         $error = "Wrong Details !";
@@ -83,7 +94,17 @@ if (isset($_POST['btn-login'])) {
                             <input class="form-check-input" type="checkbox"> Remember Password</label>
                     </div>
                 </div>
-                <button type="submit" name="btn-login" class="btn btn-block btn-primary">Login</button>
+                <div class="btn-group btn-block">
+                    <button type="submit" name="usr-login" class="btn btn-info btn-block">Login</button>
+                    <button type="submit" name="admin-login"
+                            class="btn btn-info  dropdown-toggle dropdown-toggle-split"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button type="submit" name="admin-login" class="dropdown-item">Login as Admin</button>
+                    </div>
+                </div>
             </form>
             <div class="text-center">
                 <a class="d-block small mt-3" href="register.php">Register an Account</a>

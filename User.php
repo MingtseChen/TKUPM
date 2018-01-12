@@ -72,44 +72,64 @@ class USER
     }
 
 
-    public function doLogin($uid, $upass)
+    public function doLogin($uid, $upass, $logintype)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT uid, password, level FROM admin WHERE uid=:uid");
-            $stmt->execute(array(':uid' => $uid));
-            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($stmt->rowCount() == 1) {
-                if (password_verify($upass, $userRow['password'])) {
-                    $_SESSION['user_session'] = $userRow['uid'];
-                    $_SESSION['level'] = $userRow['level'];
+            if ($logintype == 'admin') {
+//            print('admin login');
+                try {
+                    $stmt = $this->conn->prepare("SELECT uid, password, level FROM admin WHERE uid=:uid");
+                    $stmt->execute(array(':uid' => $uid));
+                    $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+                    if ($stmt->rowCount() == 1) {
+                        if (password_verify($upass, $userRow['password'])) {
+                            $_SESSION['user_session'] = $userRow['uid'];
+                            $_SESSION['level'] = $userRow['level'];
 
-                    return true;
-                } else {
-                    print ("weird");
+//                        print ('admin login success');
 
-                    return false;
+                            return true;
+                        } else {
+//                        print ("weird");
+
+                            return false;
+                        }
+                    } else {
+//                    print('login fail');
+                    }
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                    var_dump($e);
+                }
+            } else {
+//            print('usr login');
+                try {
+                    $stmt = $this->userconn->prepare("SELECT name, uname, pass FROM xoops2_users WHERE uname=:uid");
+                    $stmt->execute(array(':uid' => $uid));
+                    $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+                    //echo $userRow;
+                    if ($stmt->rowCount() == 1) {
+                        if (md5($upass) == $userRow['pass']) {
+                            $_SESSION['level'] = 3;
+                            $_SESSION['user_session'] = $userRow['uname'];
+                            $_SESSION['username'] = $userRow['name'];
+
+//                        print('user login success');
+
+                            return true;
+                        }
+                    } else {
+//                    print('login fail');
+                    }
+                } catch (PDOException $e) {
+//                print('usr login error');
+                    echo $e->getMessage();
+                    var_dump($e);
                 }
             }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            var_dump($e);
-        }
-        try {
-            $stmt = $this->userconn->prepare("SELECT uname, pass FROM xoops2_users WHERE uname=:uid");
-            $stmt->execute(array(':uid' => $uid));
-            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-            //echo $userRow;
-            if ($stmt->rowCount() == 1) {
-                if (md5($upass) == $userRow['pass']) {
-                    $_SESSION['level'] = 3;
-                    $_SESSION['user_session'] = $userRow['uname'];
-
-                    return true;
-                }
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            var_dump($e);
+        }catch (Exception $ex){
+            print('error');
+            echo $ex->getMessage();
         }
     }
 
