@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once("debug.php");
 require_once('User.php');
 $user = new USER();
 
@@ -71,7 +70,7 @@ if (isset($_POST['btn-signup']) && $_SESSION['level'] == 1) {
 <html lang="en">
 
 <head>
-    <?php echo $debugbarRenderer->renderHead() ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -176,7 +175,7 @@ if (isset($_POST['btn-signup']) && $_SESSION['level'] == 1) {
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<?php echo $debugbarRenderer->render() ?>
+
 </body>
 
 </html>

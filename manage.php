@@ -1,5 +1,5 @@
 <?php
-require_once("debug.php");
+
 require_once("session.php");
 
 require_once("User.php");
@@ -23,7 +23,6 @@ if ($_SESSION['level'] != 1) {
 <html lang="en">
 
 <head>
-    <?php echo $debugbarRenderer->renderHead() ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

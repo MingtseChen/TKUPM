@@ -1,10 +1,10 @@
 <?php
-require_once("debug.php");
+
 require_once("session.php");
 require_once("User.php");
 $auth_user = new USER();
 
-$stmt = $auth_user->runQuery("SELECT * FROM `package_info` WHERE recipients=:recipients");
+$stmt = $auth_user->runQuery("SELECT * FROM `package_info` WHERE recipients=:recipients AND is_pick = FALSE");
 $stmt->execute(array(':recipients' => $_SESSION['username']));
 $users = $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -15,7 +15,6 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-    <?php echo $debugbarRenderer->renderHead() ?>
     <title>學生郵務系統</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -25,7 +24,7 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Page level plugin CSS-->
     <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template-->
@@ -62,11 +61,12 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
     <div class="card">
         <div class="card-header">
-            Package Arrived !
+            Package Notification
         </div>
         <div class="card-body">
             <!--            <h5 class="card-title">You've got a new package !</h5>-->
             <p class="card-text">
+                <?php if ($stmt->rowCount() > 0){ ?>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
@@ -76,6 +76,7 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                     <th>存放位置</th>
                     <th>包裹編號</th>
                     <th>抵達時間</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -92,12 +93,13 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                         <td><?php echo $item['pid']; ?></td>
                         <td style="display: none"><?php echo $item['is_pick'] == 0 ? 'N' : 'Y' ?></td>
                         <td><?php echo $item['timestamp_arrive']; ?></td>
+                        <td><a class="btn btn-success" href="<?php echo "sign.php?sign=".$item['id'] ?>">簽收</a></td>
                     </tr>
                 <?php } ?>
                 </tbody>
             </table>
+            <?php }else{ echo '<h3> No Package Today :) </h3>';} ?>
             </p>
-            <a href="#" class="btn btn-success float-right" data-toggle="modal" data-target="#confirm">Sign it</a>
         </div>
     </div>
 
@@ -135,7 +137,6 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<?php echo $debugbarRenderer->render() ?>
 </body>
 
 </html>

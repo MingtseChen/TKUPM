@@ -48,6 +48,23 @@ class USER
             echo $e->getMessage();
         }
     }
+    public function pkgSign($id)
+    {
+        try {
+
+            $stmt = $this->conn->prepare(
+                "UPDATE `package_info` SET is_pick=TRUE WHERE id=:id"
+            );
+
+            $stmt->bindparam(":id", $id);
+
+            $stmt->execute();
+
+            return $stmt;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 
     public function addPackage($rpt, $ptype, $storage, $pid, $timestamp_arrive)
     {
@@ -94,8 +111,6 @@ class USER
 
                             return false;
                         }
-                    } else {
-//                    print('login fail');
                     }
                 } catch (PDOException $e) {
                     echo $e->getMessage();
@@ -118,8 +133,6 @@ class USER
 
                             return true;
                         }
-                    } else {
-//                    print('login fail');
                     }
                 } catch (PDOException $e) {
 //                print('usr login error');
@@ -153,5 +166,4 @@ class USER
         return true;
     }
 }
-
 ?>

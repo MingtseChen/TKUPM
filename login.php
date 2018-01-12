@@ -1,6 +1,4 @@
 <?php
-require_once("debug.php");
-
 session_start();
 require_once("User.php");
 $login = new USER();
@@ -22,7 +20,6 @@ if (isset($_GET['denied'])) {
 if (isset($_POST['admin-login'])) {
     $uid = strip_tags($_POST['uid']);
     $upass = strip_tags($_POST['upw']);
-    $debugbar["messages"]->addMessage("adm login!");
     if ($login->doLogin($uid, $upass, 'admin')) {
         $login->redirect('index.php');
     } else {
@@ -30,10 +27,8 @@ if (isset($_POST['admin-login'])) {
     }
 }
 if (isset($_POST['usr-login'])) {
-    $debugbar["messages"]->addMessage("usr login!");
     $uid = strip_tags($_POST['uid']);
     $upass = strip_tags($_POST['upw']);
-
     if ($login->doLogin($uid, $upass, 'usr')) {
         $login->redirect('index.php');
     } else {
@@ -45,7 +40,6 @@ if (isset($_POST['usr-login'])) {
 <html lang="en">
 
 <head>
-    <?php echo $debugbarRenderer->renderHead() ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -55,7 +49,7 @@ if (isset($_POST['usr-login'])) {
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
 </head>
@@ -118,7 +112,6 @@ if (isset($_POST['usr-login'])) {
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-<?php echo $debugbarRenderer->render() ?>
 </body>
 
 </html>
