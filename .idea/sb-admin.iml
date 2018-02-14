@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/font-awesome/fonts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/font-awesome/less" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/font-awesome/scss" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laydate/theme" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />

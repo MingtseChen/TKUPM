@@ -1,7 +1,7 @@
 <footer class="sticky-footer">
     <div class="container">
         <div class="text-center">
-            <small>Copyright © CHENMT 2017-2018/small>
+            <small>Copyright © CHENMT 2017-2018</small>
             <small>Proudly Presented by TKU IIT</small>
         </div>
     </div>
