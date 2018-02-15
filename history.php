@@ -17,8 +17,8 @@ if (isset($_POST['add_pkg']) && isset($_SESSION['level']) && $_SESSION['level'] 
 }
 
 $stmt = $auth_user->runQuery("SELECT * FROM `package_info` WHERE is_pick is TRUE ");
-$users = $stmt->execute();
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+$stmt->execute();
+$stmt->setFetchMode(PDO::FETCH_ASSOC);
 //if ($_SESSION['level'] != 1 || $_SESSION['level'] != 2 ) {
 //    $auth_user->redirect('index.php');
 //}

@@ -17,8 +17,10 @@ if (isset($_POST['add_pkg']) && isset($_SESSION['level']) && $_SESSION['level'] 
 }
 
 $stmt = $auth_user->runQuery("SELECT * FROM `package_info` WHERE is_pick is FALSE ");
-$users = $stmt->execute();
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+$stmt->execute();
+$stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+
 //if ($_SESSION['level'] != 1 || $_SESSION['level'] != 2 ) {
 //    $auth_user->redirect('index.php');
 //}
@@ -30,7 +32,24 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 // $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
+<?php
+if (isset($_POST['pick'])) {
+    header('Location: index.php?message=success');
+    ?>
+    <script>alert("Pick");</script>
+<?php } ?>
+<?php
+if (isset($_POST['edit'])) {
 
+    ?>
+    <script>alert("Edit<?php echo $timestamp = date('Y-m-d H:i:s'); ?>");</script>
+<?php } ?>
+<?php
+if (isset($_POST['del'])) {
+    header('Location: index.php?message=success');
+    ?>
+    <script>alert("Delete");</script>
+<?php } ?>
 <html lang="en">
 
 <head>
@@ -136,7 +155,7 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                             <th>已領取</th>
                             <th>已通知</th>
                             <th>抵達時間</th>
-                            <th>領取時間</th>
+                            <!--                            <th>領取時間</th>-->
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -154,11 +173,20 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                                 <td><?php echo $item['is_pick'] == 0 ? 'N' : 'Y' ?></td>
                                 <td><?php echo $item['is_notify'] == 0 ? 'N' : 'Y' ?></td>
                                 <td><?php echo $item['timestamp_arrive']; ?></td>
-                                <td><?php echo $item['timestamp_pickup']; ?></td>
+                                <!--                                <td>-->
+                                <?php //echo $item['timestamp_pickup'] == null ? '-' : $item['timestamp_pickup'] ?><!--</td>-->
                                 <td>
-                                    <input class="btn btn-info btn-sm" type="button" value="編輯">
-                                    <input class="btn btn-success btn-sm" type="button" value="簽收">
-                                    <input class="btn btn-danger btn-sm" type="button" value="刪除">
+                                    <form class="form-group" method="post">
+                                        <button class="btn btn-info btn-sm" type="submit"
+                                                value="<?php echo $item['id']; ?>" name="edit">編輯
+                                        </button>
+                                        <button class="btn btn-success btn-sm" type="submit"
+                                                value="<?php echo $item['id']; ?>" name="pick">簽收
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" type="submit"
+                                                value="<?php echo $item['id']; ?>" name="del">刪除
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php } ?>
