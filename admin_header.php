@@ -54,7 +54,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                    <i class="fa fa-fw fa-sign-out"></i><?php echo $_SESSION['user_session']; ?></a>
             </li>
         </ul>
     </div>

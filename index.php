@@ -77,6 +77,15 @@ if (isset($_POST['pick'])) {
 <?php include_once('admin_header.php'); ?>
 <div class="content-wrapper">
     <div class="container-fluid">
+        <?php if ((@$_GET['edit'] == 'success' || @$_GET['del'] == 'success' || @$_GET['pick'] == 'success')) { ?>
+            <div class="alert alert-success" role="alert">
+                Operation Success !
+            </div>
+        <?php } elseif ((@$_GET['edit'] == 'fail' || @$_GET['del'] == 'fail' || @$_GET['pick'] == 'fail')) { ?>
+            <div class="alert alert-danger" role="alert">
+                Operation Fail !
+            </div>
+        <?php } ?>
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -159,7 +168,6 @@ if (isset($_POST['pick'])) {
                             <th>已領取</th>
                             <th>已通知</th>
                             <th>抵達時間</th>
-                            <!--                            <th>領取時間</th>-->
                             <th>操作</th>
                         </tr>
                         </thead>

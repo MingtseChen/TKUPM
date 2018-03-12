@@ -51,9 +51,9 @@ class USER
     public function pkgSign($id)
     {
         try {
-
+            $time = date("Y-m-d H:i:s");
             $stmt = $this->conn->prepare(
-                "UPDATE `package_info` SET is_pick=TRUE WHERE id=:id"
+                "UPDATE `package_info` SET is_pick=TRUE,timestamp_pickup='$time' WHERE id=:id"
             );
 
             $stmt->bindparam(":id", $id);
@@ -134,7 +134,26 @@ class USER
     public function signPackage($id)
     {
         try {
-            $sign = $this->conn->prepare("UPDATE `package_info` SET is_pick=TRUE WHERE id=:id");
+            $time = date("Y-m-d H:i:s");
+            $sign = $this->conn->prepare("UPDATE `package_info` SET is_pick=TRUE,timestamp_pickup='$time' WHERE id=:id");
+            $sign->bindparam(":id", $id);
+            $sign->execute();
+            $sign->setFetchMode(PDO::FETCH_ASSOC);
+            if ($sign->rowCount() == 0) {
+                return false;
+            }
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
+    }
+
+    public function unsignPackage($id)
+    {
+        try {
+            $sign = $this->conn->prepare("UPDATE `package_info` SET is_pick=FALSE,timestamp_pickup=null WHERE id=:id");
             $sign->bindparam(":id", $id);
             $sign->execute();
             $sign->setFetchMode(PDO::FETCH_ASSOC);
@@ -163,7 +182,6 @@ class USER
                         if (password_verify($upass, $userRow['password'])) {
                             $_SESSION['user_session'] = $userRow['uid'];
                             $_SESSION['level'] = $userRow['level'];
-
 //                        print ('admin login success');
 
                             return true;
@@ -226,6 +244,9 @@ class USER
 
         return true;
     }
+
 }
 
+//$test = new USER();
+//$test->signPackage(4);
 ?>
