@@ -80,6 +80,7 @@ if (isset($_POST['pick'])) {
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <h4 class="alert-heading">dev@root:~/$ Hello ! This System Has Updated !</h4>
             Operating Button Works Now !
+            <br/>
             Several Bug Fixed
             <br/>
             Enjoy :)
