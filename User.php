@@ -32,8 +32,7 @@ class USER
             $new_password = password_hash($upass, PASSWORD_DEFAULT);
 
             $stmt = $this->conn->prepare(
-                "INSERT INTO admin(uid,email,password,level) 
-		                                               VALUES(:id, :mail, :pass, :level)"
+                "INSERT INTO admin(uid,email,password,level) VALUES(:id, :mail, :pass, :level)"
             );
 
             $stmt->bindparam(":id", $uid);
@@ -48,6 +47,7 @@ class USER
             echo $e->getMessage();
         }
     }
+
     public function pkgSign($id)
     {
         try {
@@ -86,6 +86,67 @@ class USER
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function editPackage($id, $rpt, $ptype, $storage, $pid, $timestamp_arrive)
+    {
+        try {
+            $stmt = $this->conn->prepare(
+                "UPDATE package_info SET recipients = :rpt, ptype=:ptype, storage=:storage,pid=:pid ,timestamp_arrive=:timestamp_arrive WHERE id = :id"
+            );
+
+            $stmt->bindparam(":rpt", $rpt);
+            $stmt->bindparam(":id", $id);
+            $stmt->bindparam(":ptype", $ptype);
+            $stmt->bindparam(":storage", $storage);
+            $stmt->bindparam(":pid", $pid);
+            $stmt->bindparam(":timestamp_arrive", $timestamp_arrive);
+
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 0) {
+                return false;
+            }
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function delPackage($id)
+    {
+        try {
+            $del = $this->conn->prepare("DELETE FROM package_info WHERE id=:id");
+            $del->bindparam(":id", $id);
+            $del->execute();
+            $del->setFetchMode(PDO::FETCH_ASSOC);
+            if ($del->rowCount() == 0) {
+                return false;
+            }
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
+    }
+
+    public function signPackage($id)
+    {
+        try {
+            $sign = $this->conn->prepare("UPDATE `package_info` SET is_pick=TRUE WHERE id=:id");
+            $sign->bindparam(":id", $id);
+            $sign->execute();
+            $sign->setFetchMode(PDO::FETCH_ASSOC);
+            if ($sign->rowCount() == 0) {
+                return false;
+            }
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
     }
 
 
@@ -140,7 +201,7 @@ class USER
                     var_dump($e);
                 }
             }
-        }catch (Exception $ex){
+        } catch (Exception $ex) {
             print('error');
             echo $ex->getMessage();
         }
@@ -166,4 +227,5 @@ class USER
         return true;
     }
 }
+
 ?>
