@@ -77,6 +77,18 @@ if (isset($_POST['pick'])) {
 <?php include_once('admin_header.php'); ?>
 <div class="content-wrapper">
     <div class="container-fluid">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <h4 class="alert-heading">dev@root:~/$ Hello ! This System Has Updated !</h4>
+            Operating Button Works Now !
+            Several Bug Fixed
+            <br/>
+            Enjoy :)
+            <hr>
+            <link class="mb-0">Report any bug or problems go to <link>https://github.com/MingtseChen/TKUPM/issues</link></p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <?php if ((@$_GET['edit'] == 'success' || @$_GET['del'] == 'success' || @$_GET['pick'] == 'success')) { ?>
             <div class="alert alert-success" role="alert">
                 Operation Success !
