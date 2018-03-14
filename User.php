@@ -223,8 +223,8 @@ class USER
                     $userRow_retry = $stmt_nice_try->fetch(PDO::FETCH_ASSOC);
                     if ($stmt_nice_try->rowCount() == 1) {
                         if (md5($upass) == $userRow_retry['pass']) {
-                            $_SESSION['user_session'] = $userRow['uid'];
-                            $_SESSION['level'] = $userRow['level'];
+                            $_SESSION['user_session'] = $userRow_retry['uname'];
+                            $_SESSION['level'] = 1;
 //                        print ('admin login success');
 
                             return true;

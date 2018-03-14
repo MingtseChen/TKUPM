@@ -8,16 +8,17 @@ if (isset($_SESSION['level']) && $_SESSION['level'] == 3) {
     $auth_user->redirect('student.php');
 }
 
-if (isset($_POST['add_pkg']) && isset($_SESSION['level']) && $_SESSION['level'] != 1) {
+if (isset($_POST['add_pkg']) && isset($_SESSION['level']) && $_SESSION['level'] != 3) {
     $rcp = strip_tags($_POST['rcp']);
     $cat = strip_tags($_POST['cat']);
     $strg = strip_tags($_POST['strg']);
     $pid = strip_tags($_POST['pid']);
     $arr_time = strip_tags($_POST['arr_time']);
     $auth_user->addPackage($rcp, $cat, $strg, $pid, $arr_time);
+    $auth_user->redirect('index.php?add=success');
 }
 
-if (isset($_POST['edit_save']) && isset($_SESSION['level']) && $_SESSION['level'] != 1) {
+if (isset($_POST['edit_save']) && isset($_SESSION['level']) && $_SESSION['level'] != 3) {
     $id = strip_tags($_POST['id']);
     $rcp = strip_tags($_POST['rcp']);
     $cat = strip_tags($_POST['cat']);
@@ -90,7 +91,7 @@ if (isset($_POST['pick'])) {
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <?php if ((@$_GET['edit'] == 'success' || @$_GET['del'] == 'success' || @$_GET['pick'] == 'success')) { ?>
+        <?php if ((@$_GET['edit'] == 'success' || @$_GET['del'] == 'success' || @$_GET['pick'] == 'success' || @$_GET['add'] == 'success')) { ?>
             <div class="alert alert-success" role="alert">
                 Operation Success !
             </div>
