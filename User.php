@@ -68,6 +68,7 @@ class USER
 
     public function addPackage($rpt, $ptype, $storage, $pid, $timestamp_arrive)
     {
+	mail('gene31105@gmail.com', 'My Subject', 'test tessessesesest ttttttttt');
         try {
             $stmt = $this->conn->prepare(
                 "INSERT INTO package_info(recipients,ptype,storage,pid ,timestamp_arrive) 
