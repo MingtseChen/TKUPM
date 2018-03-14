@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90a263a8-3217-4590-81f4-4d9c005ff95f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -45,76 +44,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="history.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/history.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="70" column="33" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="84" column="24" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="student.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/student.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="133" selection-start-line="133" selection-end-line="133" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sb-admin.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/sb-admin.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="95" selection-start-line="4" selection-start-column="95" selection-end-line="4" selection-end-column="95" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tempusdominus-bootstrap-4.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/tempusdominus-bootstrap-4.min.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="setting.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setting.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="125" column="62" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_header.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin_header.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/login.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            <state relative-caret-position="122">
+              <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -139,6 +70,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/da76e270-ffaf-421c-8eaf-4398b6743926/console.sql" />
         <option value="$PROJECT_DIR$/User.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/send.php" />
       </list>
     </option>
   </component>
@@ -191,8 +123,8 @@
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="259" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="241" />
     <option name="y" value="168" />
     <option name="width" value="1424" />
     <option name="height" value="778" />
@@ -308,32 +240,32 @@
       <workItem from="1520846075881" duration="3969000" />
       <workItem from="1520854742136" duration="7214000" />
       <workItem from="1520911319648" duration="5654000" />
-      <workItem from="1520923886893" duration="5331000" />
+      <workItem from="1520923886893" duration="7286000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39569000" />
+    <option name="totallyTimeSpent" value="41524000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="30" width="1922" height="1051" extended-state="6" />
+    <frame x="241" y="168" width="1424" height="778" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Key Promoter X" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="PHP-CGI Server" order="7" sideWeight="0.4914621" visible="true" weight="0.22828507" />
+      <window_info active="true" anchor="bottom" id="PHP-CGI Server" order="7" sideWeight="0.49055234" visible="true" weight="0.3776" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50160086" side_tool="true" weight="0.32850778" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49927327" weight="0.4736" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.50053364" side_tool="true" weight="0.32962137" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49893278" weight="0.32850778" />
       <window_info id="Gulp" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49786553" weight="0.3975501" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13233724" />
+      <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49709302" weight="0.3968" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18023255" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.14887941" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.20276164" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5085379" side_tool="true" visible="true" weight="0.22828507" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5094477" side_tool="true" visible="true" weight="0.3776" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -394,13 +326,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/student.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2128">
-          <caret line="133" selection-start-line="133" selection-end-line="133" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/sb-admin.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
@@ -736,10 +661,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/send.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        <state relative-caret-position="122">
+          <caret line="105" column="25" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="25" />
         </state>
       </provider>
     </entry>

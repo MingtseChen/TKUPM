@@ -92,12 +92,18 @@ if (isset($_POST['pick'])) {
             </button>
         </div>
         <?php if ((@$_GET['edit'] == 'success' || @$_GET['del'] == 'success' || @$_GET['pick'] == 'success' || @$_GET['add'] == 'success')) { ?>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 Operation Success !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         <?php } elseif ((@$_GET['edit'] == 'fail' || @$_GET['del'] == 'fail' || @$_GET['pick'] == 'fail')) { ?>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 Operation Fail !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         <?php } ?>
         <div class="card mb-3">
