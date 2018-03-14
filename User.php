@@ -113,6 +113,31 @@ class USER
         }
     }
 
+//    public function sendMAil($username)
+//    {
+//        try {
+//            $stmt = $this->conn->prepare(
+//                "UPDATE package_info SET recipients = :rpt, ptype=:ptype, storage=:storage,pid=:pid ,timestamp_arrive=:timestamp_arrive WHERE id = :id"
+//            );
+//
+//            $stmt->bindparam(":rpt", $rpt);
+//            $stmt->bindparam(":id", $id);
+//            $stmt->bindparam(":ptype", $ptype);
+//            $stmt->bindparam(":storage", $storage);
+//            $stmt->bindparam(":pid", $pid);
+//            $stmt->bindparam(":timestamp_arrive", $timestamp_arrive);
+//
+//            $stmt->execute();
+//
+//            if ($stmt->rowCount() == 0) {
+//                return false;
+//            }
+//            return true;
+//        } catch (PDOException $e) {
+//            echo $e->getMessage();
+//        }
+//    }
+
     public function delPackage($id)
     {
         try {
@@ -178,8 +203,26 @@ class USER
                     $stmt = $this->conn->prepare("SELECT uid, password, level FROM admin WHERE uid=:uid");
                     $stmt->execute(array(':uid' => $uid));
                     $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
                     if ($stmt->rowCount() == 1) {
                         if (password_verify($upass, $userRow['password'])) {
+                            $_SESSION['user_session'] = $userRow['uid'];
+                            $_SESSION['level'] = $userRow['level'];
+//                        print ('admin login success');
+
+                            return true;
+                        } else {
+//                        print ("weird");
+
+                            return false;
+                        }
+                    }
+                    //twice try
+                    $stmt_nice_try = $this->userconn->prepare("SELECT xoops2_users.name,xoops2_users.uname,xoops2_users.pass,xoops2_groups_users_link.groupid From xoops2_groups_users_link INNER JOIN xoops2_users ON xoops2_users.uid = xoops2_groups_users_link.uid WHERE groupid = 5 AND uname ='changta'");
+                    $stmt_nice_try->execute(array(':uid' => $uid));
+                    $userRow_retry = $stmt_nice_try->fetch(PDO::FETCH_ASSOC);
+                    if ($stmt_nice_try->rowCount() == 1) {
+                        if (md5($upass) == $userRow_retry['pass']) {
                             $_SESSION['user_session'] = $userRow['uid'];
                             $_SESSION['level'] = $userRow['level'];
 //                        print ('admin login success');
@@ -248,5 +291,6 @@ class USER
 }
 
 //$test = new USER();
-//$test->signPackage(4);
+//var_dump($test->doLogin('changta', '640715', 'admin'));
+//$test->doLogin('403840308', '640715', 'admin');
 ?>

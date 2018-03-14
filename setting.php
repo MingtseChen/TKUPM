@@ -1,10 +1,8 @@
 <?php
 
 require_once("session.php");
+require_once("User.php");
 $auth_user = new USER();
-
-
-
 
 $stmt = $auth_user->runQuery("SELECT * FROM `package_info` WHERE recipients=:recipients AND is_pick = FALSE");
 $stmt->execute(array(':recipients' => $_SESSION['username']));
@@ -48,7 +46,7 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                     <div class="dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false"><?php echo 'Hi, '.$_SESSION['username'] ?></a>
+                           aria-expanded="false"><?php echo 'Hi, ' . $_SESSION['username'] ?></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="setting.php">Setting</a>
                             <a class="dropdown-item" href="logout.php?logout=true">Logout</a>
@@ -63,50 +61,44 @@ $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
     <br>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Home</li>
+            <li class="breadcrumb-item"><a href="student.php">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Setting</li>
         </ol>
     </nav>
     <div class="card">
         <div class="card-header">
-            Package Notification
+            Setting
         </div>
         <div class="card-body">
             <!--            <h5 class="card-title">You've got a new package !</h5>-->
-            <p class="card-text">
-                <?php if ($stmt->rowCount() > 0){ ?>
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>收件人</th>
-                    <th>包裹類型</th>
-                    <th>存放位置</th>
-                    <th>包裹編號</th>
-                    <th>抵達時間</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $i = 1;
-                foreach ($stmt->fetchAll() as $item) { ?>
-                    <tr>
-                        <td><?php echo "$i";
-                            $i++; ?>
-                        </td>
-                        <td><?php echo $item['recipients']; ?></td>
-                        <td><?php echo $item['ptype']; ?></td>
-                        <td><?php echo $item['storage']; ?></td>
-                        <td><?php echo $item['pid']; ?></td>
-                        <td style="display: none"><?php echo $item['is_pick'] == 0 ? 'N' : 'Y' ?></td>
-                        <td><?php echo $item['timestamp_arrive']; ?></td>
-                        <td><a class="btn btn-success" href="<?php echo "sign.php?sign=".$item['id'] ?>">簽收</a></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-            <?php }else{ echo '<h3> No Package Today :) </h3>';} ?>
-            </p>
+            <form autocomplete="off" method="GET">
+                <fieldset disabled>
+                    <div class="form-group">
+                        <label for="disabledTextInput">Name</label>
+                        <input type="text" id="disabledTextInput" class="form-control"
+                               value="<?php echo $_SESSION['username'] ?>" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="disabledTextInput">Student ID #</label>
+                        <input type="text" id="disabledTextInput" class="form-control"
+                               value="<?php echo $_SESSION['user_session'] ?>" disabled>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" name="email"
+                           placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Phone Number</label>
+                    <input type="text" class="form-control" name="phone"
+                           placeholder="Phone Number">
+                </div>
+                <input type="hidden" value="<?php echo $_SESSION['user_session']; ?>" name="sid">
+                <button type="submit" class="btn btn-info">Save</button>
+            </form>
         </div>
     </div>
 
